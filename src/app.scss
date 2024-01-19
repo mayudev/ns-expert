@@ -1,0 +1,23 @@
+:root {
+	--nse-background: #262c30;
+
+	--nse-background10: #323a3f;
+	--nse-background100: #1b2125;
+
+	--nse-foreground: #fff;
+
+	--nse-primary: #47a2d6;
+}
+
+body {
+	font-family: 'Nunito', sans-serif;
+
+	background: var(--nse-background);
+	color: var(--nse-foreground);
+
+	margin: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
