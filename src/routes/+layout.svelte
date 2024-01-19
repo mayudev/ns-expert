@@ -2,12 +2,16 @@
 	import '../app.scss';
 	import '@fontsource/nunito';
 	import Header from './Header.svelte';
+
+	const currentYear = new Date().getFullYear();
 </script>
 
 <Header />
 
 <div class="container">
 	<slot />
+
+	<footer>&copy; mayu {currentYear}</footer>
 </div>
 
 <style lang="scss">
