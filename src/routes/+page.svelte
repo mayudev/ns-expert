@@ -1,20 +1,39 @@
 <script>
 	import Button from '$lib/components/atoms/Button.svelte';
-	import Input from '$lib/components/atoms/Input.svelte';
 	import StationInput from '$lib/components/organisms/StationInput.svelte';
 	import Favorites from './Favorites.svelte';
 	import Timetables from './Timetables.svelte';
 
+	import IconArrows from 'virtual:icons/material-symbols/compare-arrows';
+
 	let stationFrom = '';
 	let stationTo = '';
+	let stationFromRaw = 'dasdasdsda';
+	let stationToRaw = '';
+
+	function reverseDirections() {
+		const from = stationFrom;
+		const fromRaw = stationFromRaw;
+
+		stationFrom = stationTo;
+		stationTo = from;
+
+		stationFromRaw = stationToRaw;
+		stationToRaw = fromRaw;
+	}
 </script>
 
 <div class="landing">
 	<h2>Hello, where do you want to go?</h2>
 
 	<div class="form">
-		<StationInput placeholder="From..." bind:value={stationFrom} />
-		<StationInput placeholder="To..." bind:value={stationTo} />
+		<StationInput placeholder="From..." bind:value={stationFrom} bind:innerValue={stationFromRaw} />
+		<span class="button">
+			<Button icon title="Reverse directions" on:click={reverseDirections}>
+				<IconArrows />
+			</Button>
+		</span>
+		<StationInput placeholder="To..." bind:value={stationTo} bind:innerValue={stationToRaw} />
 	</div>
 
 	<div class="controls">
@@ -35,6 +54,11 @@
 		margin: auto;
 	}
 
+	.button {
+		flex-grow: 0;
+		font-size: 1.5rem;
+	}
+
 	.controls {
 		margin: 1rem 0;
 	}
@@ -45,6 +69,7 @@
 
 	.form {
 		display: flex;
+		align-items: center;
 		gap: 10px;
 	}
 

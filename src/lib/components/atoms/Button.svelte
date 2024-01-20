@@ -1,10 +1,14 @@
 <script lang="ts">
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
-	interface $$Props extends HTMLButtonAttributes {}
+	interface $$Props extends HTMLButtonAttributes {
+		icon?: boolean;
+	}
+
+	export let icon = false;
 </script>
 
-<button class="btn">
+<button class="btn" class:icon on:click>
 	<slot />
 </button>
 
@@ -29,6 +33,20 @@
 
 		&:hover {
 			background: var(--nse-primary);
+		}
+	}
+
+	.icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		background: none;
+		padding: 4px;
+
+		&:hover {
+			background: none;
+			color: var(--nse-primary);
 		}
 	}
 </style>

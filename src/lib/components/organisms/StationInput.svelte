@@ -6,11 +6,12 @@
 
 	interface $$Props extends HTMLInputAttributes {
 		value: string;
+		innerValue: string;
 	}
 
 	export let value = '';
+	export let innerValue = '';
 
-	let innerValue = '';
 	let stations: Station[] = [];
 	let timer: number;
 	let focusedStationIndex = -1;
