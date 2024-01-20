@@ -1,6 +1,7 @@
 <script>
 	import Button from '$lib/components/atoms/Button.svelte';
 	import Input from '$lib/components/atoms/Input.svelte';
+	import StationInput from '$lib/components/organisms/StationInput.svelte';
 	import Favorites from './Favorites.svelte';
 	import Timetables from './Timetables.svelte';
 
@@ -12,8 +13,8 @@
 	<h2>Hello, where do you want to go?</h2>
 
 	<div class="form">
-		<Input bind:value={stationFrom} placeholder="From..." />
-		<Input bind:value={stationTo} placeholder="To..." />
+		<StationInput placeholder="From..." bind:value={stationFrom} />
+		<StationInput placeholder="To..." bind:value={stationTo} />
 	</div>
 
 	<div class="controls">
