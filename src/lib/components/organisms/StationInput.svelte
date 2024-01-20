@@ -9,8 +9,8 @@
 	}
 
 	export let value = '';
-	export let innerValue = '';
 
+	let innerValue = '';
 	let stations: Station[] = [];
 	let timer: number;
 

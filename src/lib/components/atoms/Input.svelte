@@ -8,7 +8,7 @@
 	export let value = '';
 </script>
 
-<input class="input" bind:value on:input />
+<input class="input" bind:value on:input {...$$restProps} />
 
 <style lang="scss">
 	.input {
