@@ -13,18 +13,24 @@
 	let innerValue = '';
 	let stations: Station[] = [];
 	let timer: number;
+	let focusedStationIndex = -1;
 
 	async function fetchStations() {
+		if (innerValue.length < 2) {
+			stations = [];
+			return;
+		}
 		const resp = await fetch('/api/stations/search?q=' + innerValue);
 		const data = (await resp.json()) as Station[];
 
+		focusedStationIndex = -1;
 		stations = data;
 	}
 
 	function inputChange() {
 		clearTimeout(timer);
 
-		timer = setTimeout(fetchStations, 1000);
+		timer = setTimeout(fetchStations, 500);
 	}
 
 	function select(station: Station) {
@@ -32,15 +38,48 @@
 		value = station.code;
 		stations = [];
 	}
+
+	function mouseover(index: number) {
+		focusedStationIndex = index;
+	}
+
+	function keyDown(e: KeyboardEvent) {
+		if (e.key === 'ArrowDown') {
+			e.preventDefault();
+
+			if (focusedStationIndex + 1 === stations.length) {
+				focusedStationIndex = 0;
+			} else {
+				focusedStationIndex++;
+			}
+		} else if (e.key === 'ArrowUp') {
+			e.preventDefault();
+
+			if (focusedStationIndex === 0) {
+				focusedStationIndex = stations.length - 1;
+			} else {
+				focusedStationIndex--;
+			}
+		} else if (e.key === 'Enter') {
+			if (stations[focusedStationIndex]) {
+				select(stations[focusedStationIndex]);
+			}
+		}
+	}
 </script>
 
-<span class="container">
+<span class="container" on:keydown={keyDown} role="textbox" tabindex="-1">
 	<Input bind:value={innerValue} on:input={inputChange} {...$$restProps} />
 
 	{#if stations}
 		<div class="dropdown">
-			{#each stations as station}
-				<StationSuggestion {station} on:click={() => select(station)} />
+			{#each stations as station, i}
+				<StationSuggestion
+					{station}
+					active={focusedStationIndex === i}
+					on:click={() => select(station)}
+					on:mouseover={() => mouseover(i)}
+				/>
 			{/each}
 		</div>
 	{/if}

@@ -4,9 +4,10 @@
 	import { mapStationType } from '../../util/stations';
 
 	export let station: Station;
+	export let active: boolean;
 </script>
 
-<div class="station" on:click>
+<div class="station" on:click on:mouseover class:active>
 	<IconTrain />
 	<div class="right">
 		<div class="name">{station.name}</div>
@@ -25,10 +26,6 @@
 		display: flex;
 		gap: 8px;
 
-		&:hover {
-			background: var(--nse-primary);
-		}
-
 		.name {
 			font-weight: 700;
 		}
@@ -36,5 +33,9 @@
 		.description {
 			font-size: 0.9rem;
 		}
+	}
+
+	.active {
+		background: var(--nse-primary);
 	}
 </style>

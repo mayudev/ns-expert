@@ -22,8 +22,6 @@
 		background: var(--nse-background10);
 		color: inherit;
 
-		font-weight: 600;
-
 		border-bottom: 2px solid transparent;
 
 		padding: 1rem;
