@@ -8,7 +8,7 @@
 
 	let stationFrom = '';
 	let stationTo = '';
-	let stationFromRaw = 'dasdasdsda';
+	let stationFromRaw = '';
 	let stationToRaw = '';
 
 	function reverseDirections() {
@@ -26,19 +26,28 @@
 <div class="landing">
 	<h2>Hello, where do you want to go?</h2>
 
-	<div class="form">
-		<StationInput placeholder="From..." bind:value={stationFrom} bind:innerValue={stationFromRaw} />
-		<span class="button">
-			<Button icon title="Reverse directions" on:click={reverseDirections}>
-				<IconArrows />
-			</Button>
-		</span>
-		<StationInput placeholder="To..." bind:value={stationTo} bind:innerValue={stationToRaw} />
-	</div>
+	<form action="/trip">
+		<div class="form">
+			<StationInput
+				placeholder="From..."
+				bind:value={stationFrom}
+				bind:innerValue={stationFromRaw}
+			/>
+			<span class="button">
+				<Button icon title="Reverse directions" on:click={reverseDirections}>
+					<IconArrows />
+				</Button>
+			</span>
 
-	<div class="controls">
-		<Button>Search</Button>
-	</div>
+			<StationInput placeholder="To..." bind:value={stationTo} bind:innerValue={stationToRaw} />
+			<input type="hidden" value={stationFrom} name="stationFrom" />
+			<input type="hidden" value={stationTo} name="stationTo" />
+		</div>
+
+		<div class="controls">
+			<Button>Search</Button>
+		</div>
+	</form>
 
 	<div class="offergrid">
 		<Favorites />

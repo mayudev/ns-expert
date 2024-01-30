@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	import Input from '../atoms/Input.svelte';
-	import type { Station } from '../../api/types/stations';
+	import type { Station } from '../../server/types/stations';
 	import StationSuggestion from '../molecules/StationSuggestion.svelte';
 
 	interface $$Props extends HTMLInputAttributes {
@@ -31,7 +31,7 @@
 	function inputChange() {
 		clearTimeout(timer);
 
-		timer = setTimeout(fetchStations, 500);
+		timer = setTimeout(fetchStations, 200);
 	}
 
 	function select(station: Station) {
@@ -70,7 +70,7 @@
 </script>
 
 <span class="container" on:keydown={keyDown} role="textbox" tabindex="-1">
-	<Input bind:value={innerValue} on:input={inputChange} {...$$restProps} />
+	<Input bind:value={innerValue} on:input={inputChange} autocomplete="off" {...$$restProps} />
 
 	{#if stations}
 		<div class="dropdown">

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Station } from '../../api/types/stations';
+	import type { Station } from '../../server/types/stations';
 	import IconTrain from 'virtual:icons/material-symbols/train-outline';
 	import { mapStationType } from '../../util/stations';
 

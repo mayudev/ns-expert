@@ -8,6 +8,9 @@ dependencies:
   '@fontsource/nunito':
     specifier: ^5.0.16
     version: 5.0.16
+  '@fontsource/outfit':
+    specifier: ^5.0.8
+    version: 5.0.8
 
 devDependencies:
   '@iconify-json/material-symbols':
@@ -286,6 +289,10 @@ packages:
 
   /@fontsource/nunito@5.0.16:
     resolution: {integrity: sha512-55Au63Sm2ux/Aef4JenA8HJKEH1mpEMvZCYR7f4pnlOQ9linVwa1/dzPh2GDnt2H5uUK7hK2JmPCyskrldm8+w==}
+    dev: false
+
+  /@fontsource/outfit@5.0.8:
+    resolution: {integrity: sha512-1VgGeHc7rdxdtr/r4t5rL8tmMKKgf2bOpucYqFuC8rjNKCAS3mlz4MzEj9rrgRAAdn5yqlKtZOTuu+5P7WQvjw==}
     dev: false
 
   /@iconify-json/material-symbols@1.1.70:

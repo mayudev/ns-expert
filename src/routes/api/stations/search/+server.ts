@@ -1,8 +1,8 @@
 import { error, json } from '@sveltejs/kit';
-import { baseV2 } from '../../../../lib/api/ns/ns.js';
+import { baseV2 } from '$lib/server/api/ns';
 import { NS_API_KEY } from '$env/static/private';
-import type { NSResponse } from '../../../../lib/api/ns/types.js';
-import type { NSStation } from '../../../../lib/api/ns/stations.js';
+import type { NSResponse } from '../../../../lib/server/types/ns/types.js';
+import type { NSStation } from '../../../../lib/server/types/ns/stations.js';
 
 export async function GET({ url, fetch }) {
 	const q = url.searchParams.get('q');

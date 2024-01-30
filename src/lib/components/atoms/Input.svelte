@@ -22,7 +22,7 @@
 		background: var(--nse-background10);
 		color: inherit;
 
-		border-bottom: 2px solid transparent;
+		border-bottom: 2px solid var(--nse-background);
 
 		padding: 1rem;
 

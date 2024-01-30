@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../app.scss';
-	import '@fontsource/nunito';
+	import '@fontsource/outfit';
 	import Header from './Header.svelte';
 
 	const currentYear = new Date().getFullYear();
