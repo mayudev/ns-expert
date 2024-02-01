@@ -1,6 +1,7 @@
-<script>
+<script lang="ts">
 	import Button from '$lib/components/atoms/Button.svelte';
 	import StationInput from '$lib/components/organisms/StationInput.svelte';
+	import { DateInput } from 'date-picker-svelte';
 	import Favorites from './Favorites.svelte';
 	import Timetables from './Timetables.svelte';
 
@@ -10,6 +11,9 @@
 	let stationTo = '';
 	let stationFromRaw = '';
 	let stationToRaw = '';
+	let date = new Date();
+
+	const renderDate = new Date();
 
 	function reverseDirections() {
 		const from = stationFrom;
@@ -20,6 +24,10 @@
 
 		stationFromRaw = stationToRaw;
 		stationToRaw = fromRaw;
+	}
+
+	function setTime(offset: number) {
+		date = new Date(Date.now() + offset * 60000);
 	}
 </script>
 
@@ -44,8 +52,20 @@
 			<input type="hidden" value={stationTo} name="stationTo" />
 		</div>
 
+		<div class="dates">
+			<DateInput
+				timePrecision="minute"
+				format="yyyy-MM-dd HH:mm"
+				min={renderDate}
+				bind:value={date}
+			/>
+			<Button type="button" on:click={() => setTime(0)}>Now</Button>
+			<Button type="button" on:click={() => setTime(15)}>in 15 minutes</Button>
+			<Button type="button" on:click={() => setTime(60)}>in 1 hour</Button>
+		</div>
+
 		<div class="controls">
-			<Button>Search</Button>
+			<Button primary wide>Search</Button>
 		</div>
 	</form>
 
@@ -68,7 +88,8 @@
 		font-size: 1.5rem;
 	}
 
-	.controls {
+	.controls,
+	.dates {
 		margin: 1rem 0;
 	}
 
@@ -80,6 +101,12 @@
 		display: flex;
 		align-items: center;
 		gap: 10px;
+	}
+
+	.dates {
+		display: flex;
+		justify-content: center;
+		gap: 6px;
 	}
 
 	.offergrid {

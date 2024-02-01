@@ -13,6 +13,11 @@
 	--nse-primary100: #28739e;
 
 	--nse-green: #548656;
+
+	// Date picker
+	--date-picker-foreground: var(--nse-foreground);
+	--date-picker-background: var(--nse-background20);
+	--date-picker-highlight-border: var(--nse-primary);
 }
 
 body {
@@ -22,6 +27,12 @@ body {
 	color: var(--nse-foreground);
 
 	margin: 0;
+}
+
+.date-time-field input {
+	font: inherit;
+	padding: 12px 24px !important;
+	width: 100% !important;
 }
 
 * {
