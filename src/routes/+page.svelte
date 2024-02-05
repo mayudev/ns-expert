@@ -6,30 +6,25 @@
 	import Timetables from './Timetables.svelte';
 
 	import IconArrows from 'virtual:icons/material-symbols/compare-arrows';
-
-	let stationFrom = '';
-	let stationTo = '';
-	let stationFromRaw = '';
-	let stationToRaw = '';
-	let date = new Date();
+	import { search } from '../lib/stores/search';
 
 	const renderDate = new Date();
 
 	function reverseDirections() {
-		const from = stationFrom;
-		const fromRaw = stationFromRaw;
+		const from = $search.from;
+		const fromRaw = $search.fromRaw;
 
-		stationFrom = stationTo;
-		stationTo = from;
+		$search.from = $search.to;
+		$search.to = from;
 
-		stationFromRaw = stationToRaw;
-		stationToRaw = fromRaw;
+		$search.fromRaw = $search.toRaw;
+		$search.toRaw = fromRaw;
 	}
 
-	$: isoString = date.toISOString();
+	$: isoString = $search.date.toISOString();
 
 	function setTime(offset: number) {
-		date = new Date(Date.now() + offset * 60000);
+		$search.date = new Date(Date.now() + offset * 60000);
 	}
 </script>
 
@@ -40,19 +35,18 @@
 		<div class="form">
 			<StationInput
 				placeholder="From..."
-				bind:value={stationFrom}
-				bind:innerValue={stationFromRaw}
+				bind:value={$search.from}
+				bind:innerValue={$search.fromRaw}
 			/>
 			<span class="button">
-				<Button icon title="Reverse directions" on:click={reverseDirections}>
+				<Button type="button" icon title="Reverse directions" on:click={reverseDirections}>
 					<IconArrows />
 				</Button>
 			</span>
 
-			<StationInput placeholder="To..." bind:value={stationTo} bind:innerValue={stationToRaw} />
-			<input type="hidden" value={stationFrom} name="stationFrom" />
-			<input type="hidden" value={stationTo} name="stationTo" />
-			<input type="hidden" value={stationTo} name="stationTo" />
+			<StationInput placeholder="To..." bind:value={$search.to} bind:innerValue={$search.toRaw} />
+			<input type="hidden" value={$search.from} name="stationFrom" />
+			<input type="hidden" value={$search.to} name="stationTo" />
 			<input type="hidden" value={isoString} name="dateTime" />
 		</div>
 
@@ -61,7 +55,7 @@
 				timePrecision="minute"
 				format="yyyy-MM-dd HH:mm"
 				min={renderDate}
-				bind:value={date}
+				bind:value={$search.date}
 			/>
 			<Button type="button" on:click={() => setTime(0)}>Now</Button>
 			<Button type="button" on:click={() => setTime(15)}>in 15 minutes</Button>
