@@ -105,5 +105,7 @@
 
 		right: 0;
 		left: 0;
+
+		z-index: 10;
 	}
 </style>

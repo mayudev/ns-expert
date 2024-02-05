@@ -1,17 +1,21 @@
 <script lang="ts">
+	import Trip from '../../lib/components/organisms/Trip.svelte';
+
 	export let data;
 </script>
 
-{#each data.trips as trip}
-	<div>{trip.routeId}</div>
-	<ul>
-		{#each trip.legs as leg}
-			<li>
-				{leg.name}:
-				{leg.origin.name} ->
-				{leg.destination.name} (to {leg.direction})
-				{leg.origin.plannedDateTime} -> {leg.destination.plannedDateTime}
-			</li>
+<div class="page">
+	<div class="trips">
+		{#each data.trips as trip}
+			<Trip {trip} />
 		{/each}
-	</ul>
-{/each}
+	</div>
+	<div></div>
+</div>
+
+<style lang="scss">
+	.page {
+		display: grid;
+		grid-template-columns: 30% 70%;
+	}
+</style>

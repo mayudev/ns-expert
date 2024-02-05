@@ -26,6 +26,8 @@
 		stationToRaw = fromRaw;
 	}
 
+	$: isoString = date.toISOString();
+
 	function setTime(offset: number) {
 		date = new Date(Date.now() + offset * 60000);
 	}
@@ -50,6 +52,8 @@
 			<StationInput placeholder="To..." bind:value={stationTo} bind:innerValue={stationToRaw} />
 			<input type="hidden" value={stationFrom} name="stationFrom" />
 			<input type="hidden" value={stationTo} name="stationTo" />
+			<input type="hidden" value={stationTo} name="stationTo" />
+			<input type="hidden" value={isoString} name="dateTime" />
 		</div>
 
 		<div class="dates">

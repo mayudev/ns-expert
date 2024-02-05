@@ -12,7 +12,7 @@ export type NSTrip = {
 	//fareLegs
 	productFare: NSProductFare;
 	// skipped properties
-	routeId: string;
+	routeId?: string;
 };
 
 export type NSStop = {
