@@ -12,7 +12,8 @@
 	$: timeEnd = formathhmm(to.plannedDateTime);
 </script>
 
-<div class="trip">
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<div class="trip" on:click>
 	<div class="left">
 		<div class="top">
 			<div class="place">{from.name}</div>

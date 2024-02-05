@@ -3,7 +3,7 @@
 </script>
 
 <nav>
-	<Logo />
+	<a href="/"><Logo /></a>
 </nav>
 
 <style lang="scss">
@@ -13,5 +13,9 @@
 		background: #1b2125;
 
 		font-weight: 700;
+	}
+
+	a {
+		color: inherit;
 	}
 </style>
