@@ -27,6 +27,9 @@
 
 <style lang="scss">
 	.page {
+		max-width: 1200px;
+		margin: auto;
+
 		@media screen and (min-width: 700px) {
 			display: grid;
 			grid-template-columns: 50% 50%;
@@ -34,7 +37,7 @@
 
 		@media screen and (min-width: 1200px) {
 			display: grid;
-			grid-template-columns: 30% 70%;
+			grid-template-columns: 40% 60%;
 		}
 	}
 </style>

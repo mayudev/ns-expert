@@ -23,7 +23,6 @@ export type NSStop = {
 	uicCode: string;
 	stationCode: string;
 	plannedTimeZoneOffset: number;
-	plannedDateTime: string;
 	notes: string[];
 };
 
@@ -32,13 +31,16 @@ export type NSOriginDestinationStop = NSStop & {
 	plannedTrack: string;
 	actualTrack: string;
 	checkinStatus: string;
+	plannedDateTime: string;
 };
 
 export type NSIntermediaryStop = NSStop & {
-	actualDepartureTrack: string;
-	plannedDepartureTrack: string;
-	plannedArrivalTrack: string;
-	actualArrivalTrack: string;
+	actualDepartureTrack?: string;
+	plannedDepartureTrack?: string;
+	plannedArrivalTrack?: string;
+	actualArrivalTrack?: string;
+	plannedDepartureDateTime?: string;
+	plannedArrivalDateTime?: string;
 	cancelled: boolean;
 	borderStop: boolean;
 	passing: boolean;
@@ -52,6 +54,7 @@ export type NSTripLeg = {
 	partCancelled: boolean;
 	cancelled: boolean;
 	changePossible: boolean;
+	crowdForecast: string;
 	origin: NSOriginDestinationStop;
 	destination: NSOriginDestinationStop;
 	product: NSTripLegProduct;

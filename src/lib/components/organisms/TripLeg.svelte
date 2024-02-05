@@ -1,15 +1,9 @@
 <script lang="ts">
 	import type { NSTripLeg } from '../../server/types/ns/trips';
-	import { formatDuration, formathhmm } from '../../util/datetime';
+	import { formathhmm } from '../../util/datetime';
+	import LegStops from '../molecules/LegStops.svelte';
 
 	export let leg: NSTripLeg;
-
-	$: duration = Math.floor(
-		(new Date(leg.destination.plannedDateTime).getTime() -
-			new Date(leg.origin.plannedDateTime).getTime()) /
-			1000 /
-			60
-	);
 </script>
 
 <div class="leg">
@@ -20,11 +14,7 @@
 
 		Track {leg.origin.plannedTrack}
 	</div>
-	<div class="train">
-		<div>{leg.product.displayName} {leg.name}</div>
-		<div>{leg.stops.length} stops</div>
-		{formatDuration(duration)}
-	</div>
+	<LegStops {leg} />
 	<div class="fragment">
 		<span class="time">{formathhmm(leg.destination.plannedDateTime)}</span>&nbsp;
 		{leg.destination.name}
@@ -45,10 +35,6 @@
 
 		display: flex;
 		align-items: center;
-	}
-
-	.train {
-		padding: 12px;
 	}
 
 	.time {
