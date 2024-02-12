@@ -33,6 +33,10 @@
 			</div>
 		</div>
 		<div class="duration">
+			{#if trip.legs.length === 1}
+				<div class="badge">Direct</div>
+				&nbsp;
+			{/if}
 			{formatDuration(trip.actualDurationInMinutes)}
 		</div>
 	</div>
@@ -98,6 +102,13 @@
 		gap: 12px;
 
 		padding: 2px 10px;
+	}
+
+	.badge {
+		background: var(--nse-primary);
+		display: inline-block;
+		padding: 4px 6px;
+		border-radius: 150px;
 	}
 
 	.time {

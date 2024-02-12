@@ -8,11 +8,18 @@ export type NSTrip = {
 	legs: NSTripLeg[];
 	crowdForecast: string;
 	//fareRoute
-	//fares
+	fares: NSFare[];
 	//fareLegs
 	productFare: NSProductFare;
 	// skipped properties
 	routeId?: string;
+};
+
+export type NSFare = {
+	priceInCents: number;
+	product: string;
+	travelClass: string;
+	discountType: string;
 };
 
 export type NSStop = {

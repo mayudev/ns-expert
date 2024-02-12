@@ -29,9 +29,11 @@
 	}
 
 	.fragment {
-		background: var(--nse-background100);
+		background: var(--nse-background50);
+		border: 1px solid var(--nse-border);
+
 		padding: 12px;
-		border-radius: 4px;
+		border-radius: 12px;
 
 		display: flex;
 		align-items: center;
