@@ -5,6 +5,7 @@
 	import IconBottom from 'virtual:icons/material-symbols/keyboard-arrow-down';
 	import IconTop from 'virtual:icons/material-symbols/keyboard-arrow-up';
 	import LegStop from '../atoms/LegStop.svelte';
+	import { fade, fly } from 'svelte/transition';
 
 	export let leg: NSTripLeg;
 
@@ -43,7 +44,7 @@
 	</button>
 </div>
 {#if showDetails}
-	<div class="leg-stops">
+	<div class="leg-stops" transition:fly={{ y: -50, duration: 200 }}>
 		<div>{leg.crowdForecast}</div>
 		{#each leg.stops as stop}
 			<LegStop {stop} />
@@ -72,8 +73,8 @@
 
 	.toggle {
 		outline: none;
-		border: none;
-		background: var(--nse-background100);
+		background: inherit;
+		border: 1px solid var(--nse-border); //var(--nse-background100);
 
 		padding: 12px;
 		border-radius: 12px;
@@ -86,7 +87,6 @@
 
 		display: inline-flex;
 		align-items: center;
-		flex-direction: column;
 
 		cursor: pointer;
 		transition: color 200ms ease;

@@ -47,7 +47,7 @@
 
 <style lang="scss">
 	.trip {
-		margin: 6px;
+		margin: 12px 6px;
 
 		border-radius: 12px;
 

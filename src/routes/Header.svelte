@@ -9,9 +9,6 @@
 <style lang="scss">
 	nav {
 		padding: 1rem;
-
-		background: #1b2125;
-
 		font-weight: 700;
 	}
 
