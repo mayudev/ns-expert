@@ -1,19 +1,25 @@
 <script lang="ts">
+	import type {SvelteHTMLElements} from 'svelte/elements'
 	import type { NSTrip } from '../../server/types/ns/trips';
 	import { formatDuration, formathhmm } from '../../util/datetime';
 	import LegBox from '../atoms/LegBox.svelte';
 	import IconRight from 'virtual:icons/material-symbols/chevron-right-rounded';
 
-	export let trip: NSTrip;
+	interface Props extends Pick<SvelteHTMLElements['div'], 'onclick'> {
+		trip: NSTrip;
+	} 
 
-	$: from = trip.legs[0].origin;
-	$: to = trip.legs[trip.legs.length - 1].destination;
-	$: timeStart = formathhmm(from.plannedDateTime);
-	$: timeEnd = formathhmm(to.plannedDateTime);
+	let { trip, onclick }: Props = $props();
+
+	let from = $derived(trip.legs[0].origin);
+	let to = $derived(trip.legs[trip.legs.length - 1].destination);
+	let timeStart = $derived(formathhmm(from.plannedDateTime));
+	let timeEnd = $derived(formathhmm(to.plannedDateTime));
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<div class="trip" on:click>
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<div class="trip" {onclick}>
 	<div class="left">
 		<div class="top">
 			<div class="place">{from.name}</div>

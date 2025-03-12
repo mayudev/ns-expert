@@ -4,17 +4,19 @@
 	import type { Station } from '../../server/types/stations';
 	import StationSuggestion from '../molecules/StationSuggestion.svelte';
 
-	interface $$Props extends HTMLInputAttributes {
+	
+
+	interface Props {
 		value: string;
 		innerValue: string;
+		[key: string]: any
 	}
 
-	export let value = '';
-	export let innerValue = '';
+	let { value = $bindable(''), innerValue = $bindable(''), ...rest }: Props = $props();
 
-	let stations: Station[] = [];
+	let stations: Station[] = $state([]);
 	let timer: number;
-	let focusedStationIndex = -1;
+	let focusedStationIndex = $state(-1);
 
 	async function fetchStations() {
 		if (innerValue.length < 2) {
@@ -69,8 +71,8 @@
 	}
 </script>
 
-<span class="container" on:keydown={keyDown} role="textbox" tabindex="-1">
-	<Input bind:value={innerValue} on:input={inputChange} autocomplete="off" {...$$restProps} />
+<span class="container" onkeydown={keyDown} role="textbox" tabindex="-1">
+	<Input bind:value={innerValue} on:input={inputChange} autocomplete="off" {...rest} />
 
 	{#if stations}
 		<div class="dropdown">

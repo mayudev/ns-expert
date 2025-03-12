@@ -2,7 +2,11 @@
 	import type { NSIntermediaryStop } from '../../server/types/ns/trips';
 	import { formathhmm } from '../../util/datetime';
 
-	export let stop: NSIntermediaryStop;
+	interface Props {
+		stop: NSIntermediaryStop;
+	}
+
+	let { stop }: Props = $props();
 </script>
 
 <div class="stop">
@@ -17,7 +21,7 @@
 	<div class="name">
 		{stop.name}
 	</div>
-	<span style="flex: 1" />
+	<span style="flex: 1"></span>
 	<div class="times">
 		{#if stop.plannedArrivalTrack}
 			<div class="arrival">Track {stop.plannedArrivalTrack}</div>

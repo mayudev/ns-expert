@@ -3,7 +3,11 @@
 	import { discount40, formatCents } from '../../util/currency';
 	import TripLeg from './TripLeg.svelte';
 
-	export let trip: NSTrip;
+	interface Props {
+		trip: NSTrip;
+	}
+
+	let { trip }: Props = $props();
 </script>
 
 <div class="details">

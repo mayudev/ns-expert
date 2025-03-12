@@ -20,7 +20,7 @@
 		$search.toRaw = fromRaw;
 	}
 
-	$: isoString = $search.date.toISOString();
+	let isoString = $derived($search.date.toISOString());
 
 	function setTime(offset: number) {
 		$search.date = new Date(Date.now() + offset * 60000);
@@ -63,9 +63,9 @@
 				min={renderDate}
 				bind:value={$search.date}
 			/>
-			<Button type="button" on:click={() => setTime(0)}>Now</Button>
-			<Button type="button" on:click={() => setTime(15)}>in 15 minutes</Button>
-			<Button type="button" on:click={() => setTime(60)}>in 1 hour</Button>
+			<Button type="button" onclick={() => setTime(0)}>Now</Button>
+			<Button type="button" onclick={() => setTime(15)}>in 15 minutes</Button>
+			<Button type="button" onclick={() => setTime(60)}>in 1 hour</Button>
 		</div>
 
 		<div class="controls">

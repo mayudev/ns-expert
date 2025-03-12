@@ -1,13 +1,20 @@
 <script lang="ts">
+	import { createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import type { Station } from '../../server/types/stations';
 	import IconTrain from 'virtual:icons/material-symbols/train-outline';
 	import { mapStationType } from '../../util/stations';
 
-	export let station: Station;
-	export let active: boolean;
+	interface Props {
+		station: Station;
+		active: boolean;
+	}
+
+	let { station, active }: Props = $props();
 </script>
 
-<div class="station" on:click on:mouseover class:active>
+<div class="station" onclick={bubble('click')} onmouseover={bubble('mouseover')} class:active>
 	<IconTrain />
 	<div class="right">
 		<div class="name">{station.name}</div>

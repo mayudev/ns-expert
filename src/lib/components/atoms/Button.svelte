@@ -1,19 +1,28 @@
 <script lang="ts">
+	import { createBubbler } from 'svelte/legacy';
+
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
-	interface $$Props extends HTMLButtonAttributes {
+	interface Props extends Pick<HTMLButtonAttributes, 'onclick'> {
 		primary?: boolean;
 		wide?: boolean;
 		icon?: boolean;
+		children?: import('svelte').Snippet;
+		[key: string]: any
 	}
 
-	export let icon = false;
-	export let primary = false;
-	export let wide = false;
+	let {
+		primary = false,
+		wide = false,
+		icon = false,
+		children,
+		onclick,
+		...rest
+	}: Props = $props();
 </script>
 
-<button class="btn" class:icon class:primary class:wide on:click {...$$restProps}>
-	<slot />
+<button class="btn" class:icon class:primary class:wide {onclick} {...rest}>
+	{@render children?.()}
 </button>
 
 <style lang="scss">

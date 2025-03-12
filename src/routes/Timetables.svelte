@@ -4,11 +4,13 @@
 	import Input from '../lib/components/atoms/Input.svelte';
 	import Button from '../lib/components/atoms/Button.svelte';
 
-	let station = '';
+	let station = $state('');
 </script>
 
 <Section title="Timetables">
-	<IconTrain slot="icon" />
+	{#snippet icon()}
+		<IconTrain  />
+	{/snippet}
 	<Input bind:value={station} placeholder="Look for station..." />
 	<div class="buttons">
 		<Button>Departures</Button>

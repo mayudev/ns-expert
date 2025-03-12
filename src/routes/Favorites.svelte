@@ -4,6 +4,8 @@
 </script>
 
 <Section title="Favorite stations">
-	<IconFavorite slot="icon" />
+	{#snippet icon()}
+		<IconFavorite  />
+	{/snippet}
 	<div>You don't have favorite stations yet</div>
 </Section>

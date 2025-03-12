@@ -2,6 +2,11 @@
 	import '../app.scss';
 	import '@fontsource/outfit';
 	import Header from './Header.svelte';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	const currentYear = new Date().getFullYear();
 </script>
@@ -9,7 +14,7 @@
 <Header />
 
 <div class="container">
-	<slot />
+	{@render children?.()}
 
 	<footer>&copy; mayu {currentYear}</footer>
 </div>

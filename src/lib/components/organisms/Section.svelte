@@ -1,14 +1,20 @@
 <script lang="ts">
-	export let title: string;
+	interface Props {
+		title: string;
+		icon?: import('svelte').Snippet;
+		children?: import('svelte').Snippet;
+	}
+
+	let { title, icon, children }: Props = $props();
 </script>
 
 <section class="section">
 	<div class="header">
-		<slot name="icon" />
+		{@render icon?.()}
 		<div class="title">{title}</div>
 	</div>
 	<div>
-		<slot />
+		{@render children?.()}
 	</div>
 </section>
 

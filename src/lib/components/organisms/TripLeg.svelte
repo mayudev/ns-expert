@@ -3,7 +3,11 @@
 	import { formathhmm } from '../../util/datetime';
 	import LegStops from '../molecules/LegStops.svelte';
 
-	export let leg: NSTripLeg;
+	interface Props {
+		leg: NSTripLeg;
+	}
+
+	let { leg }: Props = $props();
 </script>
 
 <div class="leg">

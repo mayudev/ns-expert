@@ -4,8 +4,8 @@
 	import TripDetails from '../../lib/components/organisms/TripDetails.svelte';
 	import type { NSTrip } from '../../lib/server/types/ns/trips';
 
-	export let data;
-	let current: NSTrip | null = null;
+	let { data } = $props();
+	let current: NSTrip | null = $state(null);
 
 	function show(trip: NSTrip) {
 		current = trip;
@@ -19,7 +19,7 @@
 <div class="page">
 	<div class="trips">
 		{#each data.trips as trip}
-			<Trip {trip} on:click={() => show(trip)} />
+			<Trip {trip} onclick={() => show(trip)} />
 		{/each}
 	</div>
 	<div>

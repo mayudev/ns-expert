@@ -1,14 +1,20 @@
 <script lang="ts">
+	import { createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import type { HTMLInputAttributes } from 'svelte/elements';
 
-	interface $$Props extends HTMLInputAttributes {
+	
+
+	interface Props {
 		value: string;
+		[key: string]: any
 	}
 
-	export let value = '';
+	let { value = $bindable(''), ...rest }: Props = $props();
 </script>
 
-<input class="input" bind:value on:input {...$$restProps} />
+<input class="input" bind:value oninput={bubble('input')} {...rest} />
 
 <style lang="scss">
 	.input {

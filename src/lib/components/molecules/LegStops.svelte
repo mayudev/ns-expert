@@ -7,16 +7,20 @@
 	import LegStop from '../atoms/LegStop.svelte';
 	import { fade, fly } from 'svelte/transition';
 
-	export let leg: NSTripLeg;
+	interface Props {
+		leg: NSTripLeg;
+	}
 
-	let showDetails = false;
+	let { leg }: Props = $props();
 
-	$: duration = Math.floor(
+	let showDetails = $state(false);
+
+	let duration = $derived(Math.floor(
 		(new Date(leg.destination.plannedDateTime).getTime() -
 			new Date(leg.origin.plannedDateTime).getTime()) /
 			1000 /
 			60
-	);
+	));
 
 	function toggle() {
 		showDetails = !showDetails;
@@ -32,9 +36,9 @@
 		<div>{leg.stops.length} stops</div>
 		<div>direction {leg.destination.name}</div>
 	</div>
-	<span style="flex: 1" />
+	<span style="flex: 1"></span>
 	<div class="duration">{formatDuration(duration)}</div>
-	<button class="toggle" on:click={toggle}
+	<button class="toggle" onclick={toggle}
 		>Details
 		{#if showDetails}
 			<IconTop />
