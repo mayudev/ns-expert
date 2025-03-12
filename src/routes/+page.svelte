@@ -83,8 +83,6 @@
 
 <style lang="scss">
 	.landing {
-		padding-left: 2rem;
-
 		max-width: 900px;
 		margin: auto;
 		margin-top: 10vh;
@@ -122,5 +120,11 @@
 		gap: 16px;
 
 		margin-top: 4rem;
+	}
+
+	@media screen and (max-width: 760px) {
+		.form {
+			flex-direction: column;
+		}
 	}
 </style>

@@ -15,14 +15,10 @@
 
 <div class="container">
 	{@render children?.()}
-
-	<footer>&copy; mayu {currentYear}</footer>
 </div>
 
 <style lang="scss">
 	.container {
-		@media screen and (min-width: 600px) {
-			margin: 1rem;
-		}
+		margin: 1rem;
 	}
 </style>
