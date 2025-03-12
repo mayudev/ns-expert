@@ -2,11 +2,10 @@
 	import Button from '$lib/components/atoms/Button.svelte';
 	import StationInput from '$lib/components/organisms/StationInput.svelte';
 	import { DateInput } from 'date-picker-svelte';
-	import Favorites from './Favorites.svelte';
-	import Timetables from './Timetables.svelte';
 
 	import IconArrows from 'virtual:icons/material-symbols/compare-arrows';
 	import { search } from '../lib/stores/search';
+	import { beforeNavigate } from '$app/navigation';
 
 	const renderDate = new Date();
 
@@ -26,6 +25,13 @@
 	function setTime(offset: number) {
 		$search.date = new Date(Date.now() + offset * 60000);
 	}
+
+	beforeNavigate((navigation) => {
+		if (navigation.to?.route.id === '/trip') {
+			
+		}
+		console.log("beofre navagitate")
+	})
 </script>
 
 <div class="landing">

@@ -28,3 +28,7 @@ export async function load({ params, request, fetch }) {
 
 	return { trips: [] };
 }
+
+export const actions = {
+	default: () => {}
+};

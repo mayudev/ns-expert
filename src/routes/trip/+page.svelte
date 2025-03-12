@@ -1,15 +1,19 @@
 <script lang="ts">
+	import { afterNavigate, beforeNavigate } from '$app/navigation';
 	import Trip from '../../lib/components/organisms/Trip.svelte';
 	import TripDetails from '../../lib/components/organisms/TripDetails.svelte';
 	import type { NSTrip } from '../../lib/server/types/ns/trips';
 
 	export let data;
-
 	let current: NSTrip | null = null;
 
 	function show(trip: NSTrip) {
 		current = trip;
 	}
+
+	afterNavigate(() => {
+		console.log("after navigate")
+	})
 </script>
 
 <div class="page">
