@@ -68,8 +68,7 @@
 	</form>
 
 	<div class="offergrid">
-		<Favorites />
-		<Timetables />
+		
 	</div>
 </div>
 
