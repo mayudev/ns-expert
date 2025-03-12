@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type {SvelteHTMLElements} from 'svelte/elements'
+	import type { SvelteHTMLElements } from 'svelte/elements';
 	import type { NSTrip } from '../../server/types/ns/trips';
 	import { formatDuration, formathhmm } from '../../util/datetime';
 	import LegBox from '../atoms/LegBox.svelte';
@@ -7,7 +7,7 @@
 
 	interface Props extends Pick<SvelteHTMLElements['div'], 'onclick'> {
 		trip: NSTrip;
-	} 
+	}
 
 	let { trip, onclick }: Props = $props();
 

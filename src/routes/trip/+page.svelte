@@ -14,8 +14,8 @@
 	}
 
 	afterNavigate(() => {
-		searchLoading.loading = false
-	})
+		searchLoading.loading = false;
+	});
 </script>
 
 <div class="page" in:fly={{ y: 50, duration: 500 }}>
