@@ -6,6 +6,7 @@
 	import IconArrows from 'virtual:icons/material-symbols/compare-arrows';
 	import { search } from '../lib/stores/search';
 	import { beforeNavigate } from '$app/navigation';
+	import { searchLoading } from '$lib/stores/loading.svelte';
 
 	const renderDate = new Date();
 
@@ -28,9 +29,8 @@
 
 	beforeNavigate((navigation) => {
 		if (navigation.to?.route.id === '/trip') {
-			
+			searchLoading.loading = true
 		}
-		console.log("beofre navagitate")
 	})
 </script>
 
@@ -69,7 +69,7 @@
 		</div>
 
 		<div class="controls">
-			<Button primary wide>Search</Button>
+			<Button primary wide>Search {#if searchLoading.loading} bwaa {/if}</Button>
 		</div>
 	</form>
 

@@ -10,7 +10,7 @@ export type NSTrip = {
 	//fareRoute
 	fares: NSFare[];
 	//fareLegs
-	productFare: NSProductFare;
+	productFare?: NSProductFare;
 	// skipped properties
 	routeId?: string;
 };

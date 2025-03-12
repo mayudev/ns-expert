@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { afterNavigate, beforeNavigate } from '$app/navigation';
+	import { afterNavigate } from '$app/navigation';
+	import { searchLoading } from '$lib/stores/loading.svelte';
 	import Trip from '../../lib/components/organisms/Trip.svelte';
 	import TripDetails from '../../lib/components/organisms/TripDetails.svelte';
 	import type { NSTrip } from '../../lib/server/types/ns/trips';
@@ -12,7 +13,7 @@
 	}
 
 	afterNavigate(() => {
-		console.log("after navigate")
+		searchLoading.loading = false
 	})
 </script>
 

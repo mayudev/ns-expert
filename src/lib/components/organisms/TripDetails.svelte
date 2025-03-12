@@ -15,6 +15,7 @@
 	{#each trip.legs as leg}
 		<TripLeg {leg} />
 	{/each}
+	{#if trip.productFare}
 	<div class="title">Pricing</div>
 	<div class="prices">
 		<div class="pricing">
@@ -26,6 +27,7 @@
 			<div class="price">{formatCents(discount40(trip.productFare.priceInCents))}</div>
 		</div>
 	</div>
+	{/if}
 </div>
 
 <style lang="scss">
