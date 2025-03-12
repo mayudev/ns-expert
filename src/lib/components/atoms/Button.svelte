@@ -1,24 +1,14 @@
 <script lang="ts">
-	import { createBubbler } from 'svelte/legacy';
-
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
-	interface Props extends Pick<HTMLButtonAttributes, 'onclick'> {
+	interface Props extends HTMLButtonAttributes {
 		primary?: boolean;
 		wide?: boolean;
 		icon?: boolean;
 		children?: import('svelte').Snippet;
-		[key: string]: any
 	}
 
-	let {
-		primary = false,
-		wide = false,
-		icon = false,
-		children,
-		onclick,
-		...rest
-	}: Props = $props();
+	let { primary = false, wide = false, icon = false, children, onclick, ...rest }: Props = $props();
 </script>
 
 <button class="btn" class:icon class:primary class:wide {onclick} {...rest}>
@@ -27,7 +17,9 @@
 
 <style lang="scss">
 	.btn {
-		display: inline-block;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 
 		font: inherit;
 		outline: none;
@@ -44,15 +36,20 @@
 		transition: 200ms ease;
 		cursor: pointer;
 
-		&:hover {
+		&:enabled:hover {
 			color: var(--nse-primary);
+		}
+
+		&:disabled {
+			opacity: 0.5;
+			cursor: not-allowed;
 		}
 	}
 
 	.primary {
 		background: var(--nse-primary100);
 
-		&:hover {
+		&:enabled:hover {
 			background: var(--nse-primary);
 			color: inherit;
 		}

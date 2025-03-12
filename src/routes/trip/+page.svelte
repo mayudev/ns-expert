@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { afterNavigate } from '$app/navigation';
 	import { searchLoading } from '$lib/stores/loading.svelte';
+	import { fly } from 'svelte/transition';
 	import Trip from '../../lib/components/organisms/Trip.svelte';
 	import TripDetails from '../../lib/components/organisms/TripDetails.svelte';
 	import type { NSTrip } from '../../lib/server/types/ns/trips';
@@ -17,7 +18,7 @@
 	})
 </script>
 
-<div class="page">
+<div class="page" in:fly={{ y: 50, duration: 500 }}>
 	<div class="trips">
 		{#each data.trips as trip}
 			<Trip {trip} onclick={() => show(trip)} />

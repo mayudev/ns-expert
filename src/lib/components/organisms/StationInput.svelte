@@ -80,8 +80,8 @@
 				<StationSuggestion
 					{station}
 					active={focusedStationIndex === i}
-					on:click={() => select(station)}
-					on:mouseover={() => mouseover(i)}
+					onclick={() => select(station)}
+					onmouseover={() => mouseover(i)}
 				/>
 			{/each}
 		</div>

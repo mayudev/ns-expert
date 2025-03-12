@@ -7,6 +7,7 @@
 	import { search } from '../lib/stores/search';
 	import { beforeNavigate } from '$app/navigation';
 	import { searchLoading } from '$lib/stores/loading.svelte';
+	import Spinner from '$lib/components/atoms/Spinner.svelte';
 
 	const renderDate = new Date();
 
@@ -29,9 +30,9 @@
 
 	beforeNavigate((navigation) => {
 		if (navigation.to?.route.id === '/trip') {
-			searchLoading.loading = true
+			searchLoading.loading = true;
 		}
-	})
+	});
 </script>
 
 <div class="landing">
@@ -45,7 +46,7 @@
 				bind:innerValue={$search.fromRaw}
 			/>
 			<span class="button">
-				<Button type="button" icon title="Reverse directions" on:click={reverseDirections}>
+				<Button type="button" icon title="Reverse directions" onclick={reverseDirections}>
 					<IconArrows />
 				</Button>
 			</span>
@@ -69,13 +70,15 @@
 		</div>
 
 		<div class="controls">
-			<Button primary wide>Search {#if searchLoading.loading} bwaa {/if}</Button>
+			<Button primary wide disabled={$search.from === '' || $search.to === ''}
+				>{#if searchLoading.loading}
+					<Spinner />
+				{:else}Search{/if}
+			</Button>
 		</div>
 	</form>
 
-	<div class="offergrid">
-		
-	</div>
+	<div class="offergrid"></div>
 </div>
 
 <style lang="scss">
@@ -84,6 +87,7 @@
 
 		max-width: 900px;
 		margin: auto;
+		margin-top: 10vh;
 	}
 
 	.button {
